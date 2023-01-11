@@ -61,6 +61,14 @@
 		<Optimize>True</Optimize>
 	</PropertyGroup>
 
+	<ItemGroup Condition="'$(Configuration)' == 'Release'">
+		<PackageReference Include="ECommons" Version="2.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<ProjectReference Include="..\..\ECommons\ECommons\ECommons.csproj" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<None Include="..\.editorconfig" Link=".editorconfig" />
 	</ItemGroup>

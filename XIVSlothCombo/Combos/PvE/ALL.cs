@@ -1,4 +1,6 @@
-﻿using XIVSlothCombo.CustomComboNS;
+﻿using ECommons.ExcelServices;
+using ECommons.GameFunctions;
+using XIVSlothCombo.CustomComboNS;
 using XIVSlothCombo.Services;
 
 namespace XIVSlothCombo.Combos.PvE
@@ -230,6 +232,91 @@ namespace XIVSlothCombo.Combos.PvE
                 return (actionID is FootGraze && CanInterruptEnemy() && ActionReady(HeadGraze) ) ? HeadGraze : actionID;
             }
         }
+        internal class ALL_Dynamic_Knockback_Immunity : CustomCombo
+        {
+            protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ALL_Dynamic_Knockback_Immunity;
+
+            protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+            {
+                if (actionID != 7548 && actionID != 7559)
+                {
+                    return actionID;
+                }
+
+                uint newActionID = 0;
+                switch (LocalPlayer.GetRole())
+                {
+                    case CombatRole.Tank:
+                        newActionID = 7548;
+                        break;
+                    case CombatRole.Healer:
+                        newActionID = 7559;
+                        break;
+                    default:
+                        newActionID = actionID;
+                        break;
+                }
+
+                switch (LocalPlayer.ClassJob.Id)
+                {
+                    case (uint)Job.MNK:
+                    case (uint)Job.NIN:
+                    case (uint)Job.DRG:
+                    case (uint)Job.RPR:
+                    case (uint)Job.SAM:
+                    case (uint)Job.MCH:
+                    case (uint)Job.DNC:
+                    case (uint)Job.BRD:
+                        newActionID = 7548;
+                        break;
+                    case (uint)Job.BLM:
+                    case (uint)Job.SMN:
+                    case (uint)Job.RDM:
+                    case (uint)Job.BLU:
+                        newActionID = 7559;
+                        break;
+                }
+
+                return newActionID;
+
+            }
+        }
+        internal class ALL_DynamicAggro : CustomCombo
+        {
+            protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ALL_DynamicAggro;
+
+            protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+            {
+                if (actionID != 48 && actionID != 28 && actionID != 3629 && actionID != 16142)
+                {
+                    return actionID;
+                }
+
+                uint newActionID = 0;
+
+                switch (LocalPlayer.ClassJob.Id)
+                {
+
+                    case (uint)Job.WAR:
+                        newActionID = OriginalHook(48);
+                        break;
+                    case (uint)Job.DRK:
+                        newActionID = OriginalHook(3629);
+                        break;
+                    case (uint)Job.PLD:
+                        newActionID = OriginalHook(28);
+                        break;
+                    case (uint)Job.GNB:
+                        newActionID = OriginalHook(16142);
+                        break;
+                }
+
+                return newActionID;
+            }
+        }
+
+
+
     }
 }
 

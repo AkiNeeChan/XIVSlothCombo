@@ -88,6 +88,9 @@ namespace XIVSlothCombo.Combos
         [CustomComboInfo("Island Sanctuary Sprint Feature", "Replaces Sprint with Isle Sprint.\nOnly works at the Island Sanctuary. Icon does not change.\nDo not use with SimpleTweaks' Island Sanctuary Sprint fix.", ADV.JobID)]
         ALL_IslandSanctuary_Sprint = 100093,
 
+        [CustomComboInfo("Dynamic Knockback Immunity Feature", "Replaces every tank KB Immunity Action and it adjusts the action dynamically when you between classes", ADV.JobID)]
+        ALL_Dynamic_Knockback_Immunity = 100101,
+
         #region Global Tank Features
         [CustomComboInfo("Global Tank Features", "Features and options involving shared role actions for Tanks.\nCollapsing this category does NOT disable the features inside.", ADV.JobID)]
         ALL_Tank_Menu = 100099,
@@ -101,7 +104,11 @@ namespace XIVSlothCombo.Combos
             [ParentCombo(ALL_Tank_Menu)]
             [CustomComboInfo("Tank: Double Reprisal Protection", "Prevents the use of Reprisal when target already has the effect by replacing it with Stone.", ADV.JobID)]
             ALL_Tank_Reprisal = 100001,
-            #endregion
+
+            [ParentCombo(ALL_Tank_Menu)]
+            [CustomComboInfo("Dynamic Enmity Feature", "Replaces every tank Emnity Skill and it adjusts the action dynamically when you between swap tank classes", ADV.JobID)]
+            ALL_DynamicAggro = 100100,
+        #endregion
 
         #region Global Healer Features
         [CustomComboInfo("Global Healer Features", "Features and options involving shared role actions for Healers.\nCollapsing this category does NOT disable the features inside.", ADV.JobID)]
@@ -167,7 +174,7 @@ namespace XIVSlothCombo.Combos
         //[CustomComboInfo("Output Combat Log", "Outputs your performed actions to the chat.", ADV.JobID)]
         //AllOutputCombatLog = 100094,
 
-        // Last value = 100094
+        // Last value = 100101
 
         #endregion
 
