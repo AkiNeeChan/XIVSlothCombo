@@ -88,7 +88,7 @@ namespace XIVSlothCombo.Combos
         [CustomComboInfo("Island Sanctuary Sprint Feature", "Replaces Sprint with Isle Sprint.\nOnly works at the Island Sanctuary. Icon does not change.\nDo not use with SimpleTweaks' Island Sanctuary Sprint fix.", ADV.JobID)]
         ALL_IslandSanctuary_Sprint = 100093,
 
-        [CustomComboInfo("Dynamic Knockback Immunity Feature", "Replaces every tank KB Immunity Action and it adjusts the action dynamically when you between classes", ADV.JobID)]
+        [CustomComboInfo("Dynamic Knockback Immunity Feature", "Replaces every KB Immunity Action and it adjusts the action dynamically when you between classes", ADV.JobID)]
         ALL_Dynamic_Knockback_Immunity = 100101,
 
         #region Global Tank Features
