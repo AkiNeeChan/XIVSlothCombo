@@ -1,4 +1,5 @@
 ﻿using ECommons.DalamudServices;
+using System.Collections.Generic;
 using XIVSlothCombo.CustomComboNS;
 using XIVSlothCombo.CustomComboNS.Functions;
 
@@ -37,7 +38,9 @@ namespace XIVSlothCombo.Combos.PvE
             Peloton = 7557,
             LegSweep = 7863,
             Repose = 16560,
-            Sprint = 3;
+            Sprint = 3,
+            ArmsLength = 7548,
+            Surecast = 7559;
         private const uint
             IsleSprint = 31314;
 
@@ -242,6 +245,44 @@ namespace XIVSlothCombo.Combos.PvE
             protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
             {
                 return (actionID is FootGraze && CanInterruptEnemy() && ActionReady(HeadGraze)) ? HeadGraze : actionID;
+            }
+        }
+
+        internal class ALL_Dynamic_Knockback_Immunity : CustomCombo
+        {
+            private static readonly List<int> ArmsLengthJobs = new()
+            {
+                WAR.JobID, DRK.JobID, PLD.JobID, GNB.JobID, MNK.JobID, DRG.JobID,
+                NIN.JobID, SAM.JobID, RPR.JobID, DNC.JobID, MCH.JobID, BRD.JobID, VPR.JobID
+            };
+
+            private static readonly List<int> SurecastJobs = new()
+            {
+                BLM.JobID, SMN.JobID, RDM.JobID, BLU.JobID, WHM.JobID, SCH.JobID,
+                AST.JobID, SGE.JobID, PCT.JobID
+            };
+
+            protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ALL_Dynamic_Knockback_Immunity;
+
+            protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+            {
+                if (actionID is All.ArmsLength or All.Surecast)
+                {
+                    int playerJobId = (int)LocalPlayer.ClassJob.Id;
+
+                    if (ArmsLengthJobs.Contains(playerJobId))
+                    {
+                        return All.ArmsLength;
+                    }
+
+                    if (SurecastJobs.Contains(playerJobId))
+                    {
+                        return All.Surecast;
+                    }
+
+                }
+                return actionID;
+
             }
         }
     }

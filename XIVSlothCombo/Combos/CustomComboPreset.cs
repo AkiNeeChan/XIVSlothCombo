@@ -169,6 +169,14 @@ namespace XIVSlothCombo.Combos
 
         // Last value = 100094
 
+        #region Global Extras
+
+        [ReplaceSkill(All.ArmsLength, All.Surecast)]
+        [CustomComboInfo("Dynamic Knockback Immunity", "Automatically switches to Surecast or ArmsLength based on your current job.", ADV.JobID)]
+        ALL_Dynamic_Knockback_Immunity = 100200,
+
+        #endregion
+
         #endregion
 
         // Jobs
